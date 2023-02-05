@@ -20,7 +20,7 @@
         <div class="img_" style="width: 100px; overflow: hidden; margin: 10px;">
             <img src="soa_logo.png" alt="SOA Logo" style="width: 100%">
         </div>
-        <div class="vn" style="margin: 10px; width: 100%;">
+        <div class="vn" style="padding: 10px; width: 90%;">
             <select id="vh_num" required class="form-select" aria-label="Default select example">
                 <option selected>Select a Vehicle Number</option>
                 <option value="OD026432">OD026432</option>
@@ -29,8 +29,8 @@
             </select>
         </div>
 
-        <div class="row">
-          <div class="col-lg-6" align="center" style="margin: 10px">
+        <div class="row" style="margin: 0px">
+          <div class="col-lg-6" align="center" style="margin-top: 10px">
               <!-- <label>Capture live photo</label> -->
               <div id="my_camera" class="pre_capture_frame" ></div>
               <input type="hidden" name="captured_image_data" id="captured_image_data">
@@ -41,12 +41,16 @@
 
               <!-- <label>Result</label> -->
               <div id="results" >
-                  <img style="width: 350px; height: 287px;" class="after_capture_frame" src="image_placeholder.jpg" />
+                  <img style="width: 90%; height: auto;" class="after_capture_frame" src="image_placeholder.jpg" />
               </div>
               <br>
-              <button type="button" class="btn btn-success" onclick="callsaveSnap()">Upload Picture</button>
+              <button type="button" class="btn btn-success" onclick="callsaveSnap()" style="margin-bottom: 20px;">Upload Picture</button>
           </div>	
         </div><!--  end row -->
+
+        <!-- <div id="msg" class="message" style="display: none; position: absolute; width: 40%; overflow: hidden; background: #444; top: 50%; transform: translateY(-50%)">
+            <img src="done.gif" alt="success" style="width: 100%">
+        </div> -->
 
       </div><!-- end container -->
 
