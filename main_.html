@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="file"accept="image/*">
+<img src="" alt="">
+<script>
+    let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
+    let file = document.querySelector("input");
+    let img = document.querySelector("img");
+    file.addEventListener('change',()=>{
+        let fr = new FileReader();
+        fr.addEventListener('loadend',()=>{
+            let res = fr.result;
+            img.src=res;
+            let spt = res.split("base64,")[1];
+            // console.log("spt: ", spt); // image/jpeg
+            // console.log("File: ", file.files[0].type, " ", file.files[0].name);
+            let obj = {
+                base64:spt,
+                type:"image/jpeg",
+                name:"yykoko" + ".jpg"
+            }
+            fetch(url,{
+                method:"POST",
+                body:JSON.stringify(obj)
+            })
+            .then(r=>r.text())
+            .then(data=>console.log(data))
+ 
+        })
+        fr.readAsDataURL(file.files[0])
+    })
+</script>
+</body>
+</html>
