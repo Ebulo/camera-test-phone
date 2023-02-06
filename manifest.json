@@ -1,0 +1,21 @@
+{
+    "name": "SOA MV Meter",
+    "short_name": "Add Vehicle Last Meter Readings",
+    "start_url": ".",
+    "theme_color": "#4287f5",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "icons":[
+      {
+        "src":"soa_logo_192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src":"soa_logo_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  
+  }

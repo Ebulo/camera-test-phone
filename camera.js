@@ -2,8 +2,8 @@
 // Configure a few settings and attach camera 250x187
 // var image_uri = "";
 Webcam.set({
-    width: 350,
-    height: 287,
+    width: 300,
+    height: 240,
     image_format: 'jpeg',
     jpeg_quality: 100,
     constraints: {
