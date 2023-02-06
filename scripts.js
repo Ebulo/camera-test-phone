@@ -11,13 +11,16 @@ if("serviceWorker" in navigator){
 
 function CustomAlert(msg, duration)
 {
- var el = document.createElement("div");
- el.setAttribute("style","position:absolute;top:40%;left:20%;background-color:white;");
- el.innerHTML = msg;
+//  var el = document.createElement("div");
+ var msg = document.getElementById("msg");
+ msg.style.display = "block";
+//  el.setAttribute("style","position: absolute; Padding: 10px; border-radius: 4px; overflow: hidden; top:50%; left: 50%; transform: translate(-50%, -50%); background-color:white;");
+//  el.innerHTML = msg;
  setTimeout(function(){
-  el.parentNode.removeChild(el);
+//   el.parentNode.removeChild(el);
+  msg.style.display = "none";
  },duration);
- document.body.appendChild(el);
+//  document.body.appendChild(el);
 }
 
 
@@ -43,7 +46,7 @@ function saveSnap(res, img_name) {
         console.log(data);
         // msg.style.display = "block";
         // alert("Added Successfully")
-        CustomAlert("Added Successfully", 1000);
+        CustomAlert("Added Successfully", 5000);
     })
 
 }

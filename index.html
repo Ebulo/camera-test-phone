@@ -23,6 +23,27 @@
         $("#vh_num").select2();
         }); 
     </script>
+
+    <style>
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 50%;
+            right: 1px;
+            width: 24px;
+            transform: translateY(-50%);
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+    </style>
     
     <link rel="manifest" href="manifest.json">
 
@@ -40,7 +61,7 @@
             </div>
         </div>
         
-        <div class="vn" style="padding: 10px; width: 100%;">
+        <div class="vn" style="padding: 10px; width: 100%; margin-top: 10px;">
             <!-- <select id="vh_num" required class="form-select" aria-label="Default select example"  data-live-search="true">
                 <option value="">Select a Vehicle Number</option>
                 <option value="OD026432">OD026432</option>
@@ -215,7 +236,7 @@
               <div id="my_camera" class="pre_capture_frame" ></div>
               <input type="hidden" name="captured_image_data" id="captured_image_data">
               <br>
-              <input type="button" id="take_snapshot" class="btn btn-primary btn-round btn-file" value="Take Photo" onClick="calltake_snapshot()">	
+              <input type="button" id="take_snapshot" style="background: gray; color: #fff; margin-bottom: 20px;" class="btn btn-round btn-file" value="1. Take Photo" onClick="calltake_snapshot()">	
           </div>
           <div class="col-lg-6" align="center" style="margin-top: 10px;">
 
@@ -224,13 +245,13 @@
                   <img style="width: 80%; height: auto;" class="after_capture_frame" src="image_placeholder.jpg" />
               </div>
               <br>
-              <button type="submit" class="btn btn-success" onclick="callsaveSnap()" style="margin-bottom: 20px;">Send</button>
+              <button type="submit" class="btn" onclick="callsaveSnap()" style="background: #00963e; color: #fff; margin-bottom: 20px;">2. Send</button>
           </div>	
         </div><!--  end row -->
 
-        <!-- <div id="msg" class="message" style="display: none; position: absolute; width: 40%; overflow: hidden; background: #444; top: 50%; transform: translateY(-50%)">
-            <img src="done.gif" alt="success" style="width: 100%">
-        </div> -->
+        <div id="msg" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #444; top: 50%; transform: translateY(-50%)">
+            <img src="success.gif" alt="success" style="width: 100%">
+        </div>
 
       </div><!-- end container -->
 
@@ -243,6 +264,7 @@
         
         function calltake_snapshot() {
             // console.log("Image URI: ", vh_num.value);
+            // CustomAlert("Took Snap", 5000);
             take_snapshot()
         }
         function callsaveSnap() {
