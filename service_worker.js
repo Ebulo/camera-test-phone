@@ -2,7 +2,7 @@
 self.addEventListener("install",e=>{
     e.waitUntil(
       caches.open("static").then(cache=>{
-        return cache.addAll(["./",'soa_logo_192.png','soa_logo_512.png','soa_logo.png']);
+        return cache.addAll(['soa_logo_192.png','soa_logo_512.png','soa_logo.png']);
       })
     );
   });
