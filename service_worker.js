@@ -10,9 +10,10 @@ self.addEventListener("install",e=>{
   
   // Fatch resources
   self.addEventListener("fetch",e=>{
-    e.respondWith(
-      caches.match(e.request).then(response=>{
-        return response||fetch(e.request);
-      })
-    );
+    // e.respondWith(
+    //   caches.match(e.request).then(response=>{
+    //     return response||fetch(e.request);
+    //   })
+    // );
+    console.log("Successfull");
 });
