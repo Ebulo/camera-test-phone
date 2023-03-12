@@ -8,11 +8,38 @@ if("serviceWorker" in navigator){
   console.log("Not supported");
 }
 
+// Online Check
+// window.addEventListener("load", (event) => {
+//   const statusDisplay = document.getElementById("error");
+//   statusDisplay.style.display = navigator.onLine ? "none" : "block";
+// });
+
+const checkOnlineStatus = async () => {
+  try {
+    // const online = await fetch("static/img/error.jpg");
+    const online = await fetch("https://upload.wikimedia.org/wikipedia/commons/e/e6/1kb.png");
+    return online.status >= 200 && online.status < 300; // either true or false
+  } catch (err) {
+    return false; // definitely offline
+  }
+};
+
+setInterval(async () => {
+  const result = await checkOnlineStatus();
+  const statusDisplay = document.getElementById("error");
+  statusDisplay.style.display = result ? "none" : "block";
+}, 30000); // probably too often, try 30000 for every 30 seconds
+
+window.addEventListener("load", async (event) => {
+  const statusDisplay = document.getElementById("error");
+  statusDisplay.style.display = (await checkOnlineStatus()) ? "none" : "block";
+});
+
 
 function CustomAlert(msg, duration)
 {
 //  var el = document.createElement("div");
- var msg = document.getElementById("msg");
+ var msg = document.getElementById("upload_done");
  msg.style.display = "block";
 //  el.setAttribute("style","position: absolute; Padding: 10px; border-radius: 4px; overflow: hidden; top:50%; left: 50%; transform: translate(-50%, -50%); background-color:white;");
 //  el.innerHTML = msg;
@@ -26,6 +53,11 @@ function CustomAlert(msg, duration)
 
 function saveSnap(res, img_name) {
     // let msg = document.getElementById("msg");
+    let send_btn = document.getElementById("send_btn");
+    let upload_start = document.getElementById("upload_start");
+    let error = document.getElementById("error");
+    send_btn.disabled = true;
+    upload_start.style.display = "block";
     let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
     
     let spt = res.split("base64,")[1];
@@ -37,16 +69,26 @@ function saveSnap(res, img_name) {
         name: img_name + ".jpg",
         date: date
     }
-    fetch(url,{
-        method:"POST",
-        body:JSON.stringify(obj)
-    })
-    .then(r=>r.text())
-    .then(data => {
-        console.log(data);
-        // msg.style.display = "block";
-        // alert("Added Successfully")
-        CustomAlert("Added Successfully", 5000);
-    })
+    try {
+      const upload = fetch(url,{
+          method:"POST",
+          body:JSON.stringify(obj)
+      });
+
+      upload.then(r=>r.text())
+      .then(data => {
+          console.log(JSON.parse(data).status);
+          // msg.style.display = "block";
+          // alert("Added Successfully")
+          CustomAlert("Added Successfully", 2800);
+          upload_start.style.display = "none";
+          send_btn.disabled = false;
+      })
+    } catch(err) {
+      console.log("Error: ", err);
+      upload_start.style.display = "none"; 
+      send_btn.disabled = false;
+      error.style.display = "block";
+    }
 
 }

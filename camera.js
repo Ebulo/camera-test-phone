@@ -4,7 +4,7 @@
 Webcam.set({
     width: 300,
     height: 240,
-    image_format: 'jpeg',
+    image_format: 'jpg',
     jpeg_quality: 100,
     constraints: {
         facingMode: 'environment'

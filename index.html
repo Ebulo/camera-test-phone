@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
     <!-- Bootstrap theme -->
@@ -53,7 +53,7 @@
     <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div class="header" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; margin-top: 10px;">
             <div class="img_" style="position: relative; left: 0px; top: 0px; width: 40px; overflow: hidden; margin: 4px;">
-                <img src="soa_logo.png" alt="SOA Logo" style="width: 100%">
+                <img src="static/img/soa_logo.png" alt="SOA Logo" style="width: 100%">
             </div>
             <h4 style="margin-bottom: 0; margin-top: 8px">SOA MOTOR VEHICLE</h4>
             <div class="xyg">
@@ -241,15 +241,23 @@
 
               <!-- <label>Result</label> -->
               <div id="results" >
-                  <img style="width: 80%; height: auto;" class="after_capture_frame" src="image_placeholder.jpg" />
+                  <img style="width: 80%; height: auto;" class="after_capture_frame" src="static/img/no_image.png" />
               </div>
               <br>
-              <button type="submit" class="btn" onclick="callsaveSnap()" style="background: #00963e; color: #fff; margin-bottom: 20px;">2. Send</button>
+              <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style="background: #00963e; color: #fff; margin-bottom: 20px;">2. Send</button>
           </div>	
         </div><!--  end row -->
 
-        <div id="msg" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #444; top: 50%; transform: translateY(-50%)">
-            <img src="success.gif" alt="success" style="width: 100%">
+        <div id="upload_start" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/upload_start.gif" alt="success" style="position: relative; width: 100%; top: 50%; transform: translateY(-50%);">
+        </div>
+
+        <div id="upload_done" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/upload_done.gif" alt="success" style="position: relative; width: 100%; top: 50%; transform: translateY(-50%);">
+        </div>
+
+        <div id="error" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/error.jpg" alt="success" style="position: relative; width: 80%; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%;">
         </div>
 
       </div><!-- end container -->
