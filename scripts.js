@@ -51,8 +51,14 @@ function CustomAlert(msg, duration)
 }
 
 
-function saveSnap(res, img_name) {
+async function saveSnap(res, img_name) {
     // let msg = document.getElementById("msg");
+    if (!(await checkOnlineStatus())) {
+      const statusDisplay = document.getElementById("error");
+      statusDisplay.style.display = "block";
+      return
+    }
+
     let send_btn = document.getElementById("send_btn");
     let upload_start = document.getElementById("upload_start");
     let error = document.getElementById("error");
@@ -74,9 +80,9 @@ function saveSnap(res, img_name) {
           method:"POST",
           body:JSON.stringify(obj)
       });
-
       upload.then(r=>r.text())
       .then(data => {
+          console.log(upload.status);
           console.log(JSON.parse(data).status);
           // msg.style.display = "block";
           // alert("Added Successfully")
