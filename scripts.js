@@ -64,7 +64,8 @@ async function saveSnap(res, img_name) {
     let error = document.getElementById("error");
     send_btn.disabled = true;
     upload_start.style.display = "block";
-    let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
+    // let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
+    let url = "https://script.google.com/macros/s/AKfycbxIPNCwLKHK7qeBe68hg3CPXwsbTnX70qaPEIhV-4omqfPhteRNf6f2KKtvINfyclqQ/exec";
     
     let spt = res.split("base64,")[1];
     // console.log("spt: ", spt);
@@ -76,6 +77,7 @@ async function saveSnap(res, img_name) {
         date: date
     }
     try {
+      // document.body.style.overscrollBehavior = "none";
       const upload = fetch(url,{
           method:"POST",
           body:JSON.stringify(obj)

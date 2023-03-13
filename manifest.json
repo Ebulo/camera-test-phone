@@ -1,6 +1,6 @@
 {
-    "name": "SOA MV Meter",
-    "short_name": "MV Dashboard",
+    "name": "SOA MV Live Data",
+    "short_name": "Live Data",
     "start_url": ".",
     "theme_color": "#4287f5",
     "background_color": "#ffffff",
