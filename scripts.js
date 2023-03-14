@@ -68,7 +68,7 @@ function capture_image() {
       // preview.src = reader.result;
       console.log("Reader.Result", reader.result);
       document.getElementById('results').innerHTML = '<img class="captured_photo" src="'+ reader.result +'"/>';
-      // var image_uri = reader.result;
+      image_uri = reader.result;
       // return image_uri;
     },
     false
@@ -77,7 +77,7 @@ function capture_image() {
   // return image_uri
 
 
-  console.log("Camera_image: ", image_data.value);
+  // console.log("Camera_image: ", image_data.value);
   // document.getElementById('results').innerHTML = '<img class="after_capture_frame" src="'+ image_data.value +'"/>';
     // $("#captured_image_data").val(data_uri);
 }

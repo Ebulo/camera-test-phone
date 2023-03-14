@@ -238,14 +238,7 @@
         </div>
 
         <div class="row" style="margin: 0px">
-          <div class="col-lg-6" align="center" style="margin-top: 10px">
-              <!-- <div id="my_camera" class="pre_capture_frame" ></div> -->
-              <!-- <input type="hidden" name="captured_image_data" id="captured_image_data"> -->
-              <input onchange="capture_image()" type="file" accept="image/*" capture="user" name="camera_image" style="display: none;" id="camera_image">
-              <br>
-
-              <label for="camera_image" type="button" id="take_snapshot" style="background: rgb(255, 217, 0); font-weight: 600; color: #000000; margin-bottom: 20px; cursor: pointer;" class="btn btn-round btn-file">1. Take Photo</label>
-          </div>
+          
           <div class="col-lg-6" align="center" style="margin-top: 10px;">
 
               <!-- <label>Result</label> -->
@@ -253,7 +246,12 @@
                   <img style="width: 80%; height: auto;" class="after_capture_frame" src="static/img/no_image.png" />
               </div>
               <br>
-              <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style=" font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
+              <div class="col-lg-6" align="center" style="margin-top: 10px">
+                <input onchange="capture_image()" type="file" accept="image/*" capture="user" name="camera_image" style="display: none;" id="camera_image">
+                <label for="camera_image" type="button" id="take_snapshot" style="margin-right: 6px; background: rgb(255, 217, 0); font-weight: 600; color: #000000; margin-bottom: 20px; cursor: pointer;" class="btn btn-round btn-file">1. Take Photo</label>
+
+                <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style="margin-left: 6px; font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
+              </div>
           </div>	
         </div><!--  end row -->
 
@@ -271,17 +269,17 @@
 
       </div><!-- end container -->
 
-      <!-- <script src="camera.js"></script> -->
       <script src="scripts.js"></script>
       <script>
         var vh_num = document.getElementById("vh_num");
-        function calltake_snapshot() {
-            take_snapshot()
-        }
+        // function calltake_snapshot() {
+        //     take_snapshot()
+        // }
         function callsaveSnap() {
             if (vh_num.value == "") {
                 alert("Please Select a Registration Number")
             } else {
+                console.log("Image URI: ", image_uri);
                 saveSnap(image_uri, vh_num.value)
             }
         }
