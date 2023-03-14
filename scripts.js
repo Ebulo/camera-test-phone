@@ -51,6 +51,38 @@ function CustomAlert(msg, duration)
 }
 
 
+function capture_image() {
+  let image_data = document.getElementById("camera_image").files[0];
+
+  const reader = new FileReader();
+  // var image_uri;
+  
+  if (image_data) {
+    reader.readAsDataURL(image_data);
+  }
+
+  reader.addEventListener(
+    "load",
+    () => {
+      // convert image file to base64 string
+      // preview.src = reader.result;
+      console.log("Reader.Result", reader.result);
+      document.getElementById('results').innerHTML = '<img class="captured_photo" src="'+ reader.result +'"/>';
+      // var image_uri = reader.result;
+      // return image_uri;
+    },
+    false
+  );
+
+  // return image_uri
+
+
+  console.log("Camera_image: ", image_data.value);
+  // document.getElementById('results').innerHTML = '<img class="after_capture_frame" src="'+ image_data.value +'"/>';
+    // $("#captured_image_data").val(data_uri);
+}
+
+
 async function saveSnap(res, img_name) {
     // let msg = document.getElementById("msg");
     if (!(await checkOnlineStatus())) {
