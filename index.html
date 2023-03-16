@@ -245,8 +245,8 @@
           <div class="col-lg-6" align="center" style="margin-top: 10px;">
 
               <!-- <label>Result</label> -->
-              <div id="results" >
-                  <img style="width: 80%; height: auto;" class="after_capture_frame" src="static/img/no_image.png" />
+              <div id="results" style="width: 80%">
+                  <img style="width: 100%; height: auto;" class="after_capture_frame" src="static/img/no_image.png" />
               </div>
               <br>
               <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style=" font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
@@ -284,7 +284,11 @@
             if (vh_num.value == "") {
                 alert("Please Select a Registration Number")
             } else {
-                saveSnap(image_uri, vh_num.value)
+                if (image_uri !== null) {
+                    saveSnap(image_uri, vh_num.value)
+                } else {
+                    alert("Please Take a New Photo")
+                }
             }
         }
       </script>

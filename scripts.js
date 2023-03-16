@@ -1,3 +1,4 @@
+image_uri = null
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("service_worker.js").then(registration=>{
       console.log("SW Registered!");
@@ -50,6 +51,70 @@ function CustomAlert(msg, duration)
 //  document.body.appendChild(el);
 }
 
+function blobToDataURL(blob, callback) {
+  var a = new FileReader();
+  a.onload = function(e) {callback(e.target.result);}
+  a.readAsDataURL(blob);
+}
+
+
+//Get the Image Size
+function bytesToSize(bytes) {
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  if (bytes === 0) {
+    return "0 Byte";
+  }
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
+}
+
+
+
+// Image Compression
+function compressImage(imgToCompress, resizingFactor, quality) {
+  // showing the compressed image
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+
+  const originalWidth = imgToCompress.width;
+  const originalHeight = imgToCompress.height;
+
+  const canvasWidth = originalWidth * resizingFactor;
+  const canvasHeight = originalHeight * resizingFactor;
+
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
+  context.drawImage(
+    imgToCompress,
+    0,
+    0,
+    originalWidth * resizingFactor,
+    originalHeight * resizingFactor
+  );
+
+  // reducing the quality of the image
+  canvas.toBlob(
+    (blob) => {
+      if (blob) {
+        // compressedImageBlob = blob;
+        
+        blobToDataURL(blob, function(dataurl){
+          // console.log("Data URL: ", dataurl);
+          // captured_photo.src = URL.createObjectURL(compressedImageBlob);
+          // let captured_photo = document.querySelector("#test")
+          // captured_photo.src = URL.createObjectURL(blob);
+          image_uri = dataurl
+        });
+        console.log("Image Current Size: ", bytesToSize(blob.size));
+        // document.querySelector("#size").innerHTML = bytesToSize(blob.size);
+      }
+    },
+    "image/jpeg",
+    quality
+  );
+}
+
 
 function capture_image() {
   let image_data = document.getElementById("camera_image").files[0];
@@ -66,8 +131,12 @@ function capture_image() {
     () => {
       // convert image file to base64 string
       // preview.src = reader.result;
-      console.log("Reader.Result", reader.result);
-      document.getElementById('results').innerHTML = '<img class="captured_photo" src="'+ reader.result +'"/>';
+      // console.log("Reader.Result", reader.result);
+      document.getElementById('results').innerHTML = '<img class="captured_photo" style="width: 100%" id="captured_photo" src="'+ reader.result +'"/>';
+      let captured_photo = document.querySelector('#captured_photo')
+      captured_photo.addEventListener('load', () => {
+        compressImage(captured_photo, 1, 1);
+      })
       image_uri = reader.result;
       // return image_uri;
     },
@@ -121,6 +190,7 @@ async function saveSnap(res, img_name) {
           // msg.style.display = "block";
           // alert("Added Successfully")
           CustomAlert("Added Successfully", 2800);
+          image_uri = null;
           upload_start.style.display = "none";
           send_btn.disabled = false;
       })

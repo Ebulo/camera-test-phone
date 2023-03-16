@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Compress and Resize an Image</h1>
+    <p>
+      Upload an image and compress it or use the following demo image
+    </p>
+    <input id="upload" type="file" accept="image/*" />
+    <div>
+      <h2>Original Image</h2>
+      <img
+        style="margin-top: 5px;"
+        id="originalImage"
+        crossorigin="anonymous"
+      />
+    </div>
+    <div style="margin-top: 5px;">
+      <span>Resizing: </span>
+      <input type="range" min="1" max="100" value="80" id="resizingRange" />
+    </div>
+    <div style="margin-top: 5px; margin-left: 8px;">
+      <span>Quality: </span>
+      <input type="range" min="1" max="100" value="80" id="qualityRange" />
+    </div>
+    <h2>Compressed Image</h2>
+    <div><b>Size:</b> <span id="size"></span></div>
+    <img id="compressedImage" />
+    <div>
+      <button id="uploadButton">Upload to Imgur</button>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
