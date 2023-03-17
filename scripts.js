@@ -114,7 +114,7 @@ function compressImage(imgToCompress, resizingFactor, quality) {
       }
     },
     "image/jpeg",
-    0.8
+    quality
   );
 }
 
@@ -142,7 +142,7 @@ function capture_image() {
       
       // let captured_photo = document.querySelector('#captured_photo_')
       captured_photo.addEventListener('load', () => {
-        compressImage(captured_photo, 1, 2);
+        compressImage(captured_photo, 1, 0.7);
       })
       image_uri = reader.result;
       // return image_uri;
