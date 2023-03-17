@@ -12,7 +12,7 @@ function getCurrentLocation() {
 
 function showLocation(position) {
     lat = !position.coords.latitude?"No Lat": position.coords.latitude
-    lng = !position.coords.longitude?"No Lng": position.coords.latitude
+    lng = !position.coords.longitude?"No Lng": position.coords.longitude
     speed = !position.coords.speed? "0 Km/Hr": position.coords.speed
     altitude = !position.coords.altitude? "Sea Level": position.coords.altitude
 
