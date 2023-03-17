@@ -82,9 +82,12 @@ function compressImage(imgToCompress, resizingFactor, quality) {
   const canvasWidth = originalWidth * resizingFactor;
   const canvasHeight = originalHeight * resizingFactor;
 
+  console.log("canvas width height original: ", canvasWidth, canvasHeight, originalWidth, originalHeight);
+  
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
-
+  
+  console.log("canvas width height original: ", canvasWidth, canvasHeight, originalWidth, originalHeight);
   context.drawImage(
     imgToCompress,
     0,
@@ -98,6 +101,7 @@ function compressImage(imgToCompress, resizingFactor, quality) {
     (blob) => {
       if (blob) {
         // compressedImageBlob = blob;
+        console.log("Image Current Size: ", bytesToSize(blob.size));
         
         blobToDataURL(blob, function(dataurl){
           // console.log("Data URL: ", dataurl);
@@ -106,12 +110,11 @@ function compressImage(imgToCompress, resizingFactor, quality) {
           // captured_photo.src = URL.createObjectURL(blob);
           image_uri = dataurl
         });
-        console.log("Image Current Size: ", bytesToSize(blob.size));
         // document.querySelector("#size").innerHTML = bytesToSize(blob.size);
       }
     },
     "image/jpeg",
-    quality
+    0.8
   );
 }
 
@@ -133,9 +136,13 @@ function capture_image() {
       // preview.src = reader.result;
       // console.log("Reader.Result", reader.result);
       document.getElementById('results').innerHTML = '<img class="captured_photo" style="width: 100%" id="captured_photo" src="'+ reader.result +'"/>';
-      let captured_photo = document.querySelector('#captured_photo')
+      // document.getElementById('hidden_image_compression').innerHTML = '<img id="captured_photo_" src="'+ reader.result +'"/>';
+      let captured_photo = new Image()
+      captured_photo.src = reader.result
+      
+      // let captured_photo = document.querySelector('#captured_photo_')
       captured_photo.addEventListener('load', () => {
-        compressImage(captured_photo, 1, 1);
+        compressImage(captured_photo, 1, 2);
       })
       image_uri = reader.result;
       // return image_uri;

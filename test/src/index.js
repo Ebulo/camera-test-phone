@@ -80,6 +80,9 @@ function compressImage(imgToCompress, resizingFactor, quality) {
   const originalWidth = imgToCompress.width;
   const originalHeight = imgToCompress.height;
 
+  console.log("Original Width: ", originalWidth);
+  console.log("Original Height: ", originalHeight);
+
   const canvasWidth = originalWidth * resizingFactor;
   const canvasHeight = originalHeight * resizingFactor;
 
