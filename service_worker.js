@@ -6,9 +6,9 @@ self.addEventListener("install",e=>{
     //   })
     // );
     console.log("Service Worker Added, App installed");
-  });
+});
   
-  // Fatch resources
-  self.addEventListener("fetch", async e=>{
-    console.log("Successfull");
+// Fatch resources
+self.addEventListener("fetch", async e=>{
+  console.log("Successfull");
 });

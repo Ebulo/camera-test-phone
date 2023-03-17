@@ -1,4 +1,5 @@
 image_uri = null
+loc = {"lat": "No Permission", "lng": "No Permission", "speed": "No Permission", "altitude": "Sea Level"}
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("service_worker.js").then(registration=>{
       console.log("SW Registered!");
@@ -7,6 +8,11 @@ if("serviceWorker" in navigator){
     });
 }else{
   console.log("Not supported");
+}
+
+function bodyLoaded() {
+  console.log("Body Loaded");
+  getCurrentLocation();
 }
 
 // Online Check
@@ -18,7 +24,9 @@ if("serviceWorker" in navigator){
 const checkOnlineStatus = async () => {
   try {
     // const online = await fetch("static/img/error.jpg");
-    const online = await fetch("https://upload.wikimedia.org/wikipedia/commons/e/e6/1kb.png");
+    dt = Date.now()
+    const online = await fetch("https://upload.wikimedia.org/wikipedia/commons/e/e6/1kb.png" + "?dummy=" + dt);
+    // console.log(online);
     return online.status >= 200 && online.status < 300; // either true or false
   } catch (err) {
     return false; // definitely offline
@@ -26,10 +34,11 @@ const checkOnlineStatus = async () => {
 };
 
 setInterval(async () => {
+  // console.log("Error Screen Interval");
   const result = await checkOnlineStatus();
   const statusDisplay = document.getElementById("error");
   statusDisplay.style.display = result ? "none" : "block";
-}, 30000); // probably too often, try 30000 for every 30 seconds
+}, 10000); // probably too often, try 30000 for every 30 seconds
 
 window.addEventListener("load", async (event) => {
   const statusDisplay = document.getElementById("error");
@@ -81,13 +90,10 @@ function compressImage(imgToCompress, resizingFactor, quality) {
 
   const canvasWidth = originalWidth * resizingFactor;
   const canvasHeight = originalHeight * resizingFactor;
-
-  console.log("canvas width height original: ", canvasWidth, canvasHeight, originalWidth, originalHeight);
   
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
   
-  console.log("canvas width height original: ", canvasWidth, canvasHeight, originalWidth, originalHeight);
   context.drawImage(
     imgToCompress,
     0,
@@ -101,7 +107,7 @@ function compressImage(imgToCompress, resizingFactor, quality) {
     (blob) => {
       if (blob) {
         // compressedImageBlob = blob;
-        console.log("Image Current Size: ", bytesToSize(blob.size));
+        // console.log("Image Current Size: ", bytesToSize(blob.size));
         
         blobToDataURL(blob, function(dataurl){
           // console.log("Data URL: ", dataurl);
@@ -167,6 +173,8 @@ async function saveSnap(res, img_name) {
       return
     }
 
+    // loc = getCurrentLocation();
+
     let send_btn = document.getElementById("send_btn");
     let upload_start = document.getElementById("upload_start");
     let error = document.getElementById("error");
@@ -178,11 +186,15 @@ async function saveSnap(res, img_name) {
     let spt = res.split("base64,")[1];
     // console.log("spt: ", spt);
     let date = new Date().toLocaleDateString();
+    loc_string = JSON.stringify(loc);
+    // print(loc);
+    // console.log("Location: ", loc);
     let obj = {
         base64:spt,
         type:"image/jpeg",
         name: img_name + ".jpg",
-        date: date
+        date: date,
+        loc: loc_string
     }
     try {
       // document.body.style.overscrollBehavior = "none";
@@ -192,8 +204,8 @@ async function saveSnap(res, img_name) {
       });
       upload.then(r=>r.text())
       .then(data => {
-          console.log(upload.status);
-          console.log(JSON.parse(data).status);
+          // console.log(upload.status);
+          console.log(JSON.parse(data));
           // msg.style.display = "block";
           // alert("Added Successfully")
           CustomAlert("Added Successfully", 2800);
