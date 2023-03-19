@@ -44,16 +44,13 @@
             font-weight: 400;
             letter-spacing: 1px;
         }
-        .captured_photo {
-            width: 100%;
-        }
     </style>
     
     <link rel="manifest" href="manifest.json">
 
-    <title>MV Live</title>
+    <title>SOA MV Meter</title>
 </head>
-<body onload="bodyLoaded()">
+<body>
     <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div class="header" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; margin-top: 10px;">
             <div class="img_" style="position: relative; left: 0px; top: 0px; width: 40px; overflow: hidden; margin: 4px;">
@@ -71,6 +68,12 @@
         </div>
         
         <div class="vn" style="padding: 10px; width: 100%; margin-top: 10px;">
+            <!-- <select id="vh_num" required class="form-select" aria-label="Default select example"  data-live-search="true">
+                <option value="">Select a Vehicle Number</option>
+                <option value="OD026432">OD026432</option>
+                <option value="OD010405">OD010405</option>
+                <option value="JR064302">JR064302</option>
+            </select> -->
             <select id="vh_num" required class="form-select" aria-label="Default select example"  data-live-search="true" style="height: 40px;">
                 <option value="">Registration Number</option>
                 <option value="OR 02 BH 7644">OR 02 BH 7644</option>
@@ -233,23 +236,21 @@
         </div>
 
         <div class="row" style="margin: 0px">
-          
+          <div class="col-lg-6" align="center" style="margin-top: 10px">
+              <!-- <label>Capture live photo</label> -->
+              <div id="my_camera" class="pre_capture_frame" ></div>
+              <input type="hidden" name="captured_image_data" id="captured_image_data">
+              <br>
+              <input type="button" id="take_snapshot" style="background: rgb(255, 217, 0); font-weight: 600; color: #000000; margin-bottom: 20px;" class="btn btn-round btn-file" value="1. Take Photo" onClick="calltake_snapshot()">	
+          </div>
           <div class="col-lg-6" align="center" style="margin-top: 10px;">
 
               <!-- <label>Result</label> -->
-              <div id="results" style="width: 90%; height: auto; overflow: hidden; border-radius: 8px;">
-                  <img style="width: 100%; height: auto;" class="captured_photo_abcd" src="static/img/no_image.png" />
+              <div id="results" style="width: 80%">
+                  <img style="width: 100%; height: auto;" class="after_capture_frame" src="static/img/no_image.png" />
               </div>
-              <!-- <div id="hidden_image_compression">
-
-              </div> -->
               <br>
-              <div class="col-lg-6" align="center" style="margin-top: 10px">
-                <input onchange="capture_image()" type="file" accept="image/*" capture="user" name="camera_image" style="display: none;" id="camera_image">
-                <label for="camera_image" type="button" id="take_snapshot" style="margin-right: 6px; background: rgb(255, 217, 0); font-weight: 600; color: #000000; margin-bottom: 20px; cursor: pointer;" class="btn btn-round btn-file">1. Take Photo</label>
-
-                <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style="margin-left: 6px; font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
-              </div>
+              <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style=" font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
           </div>	
         </div><!--  end row -->
 
@@ -265,19 +266,22 @@
             <img src="static/img/error.jpg" alt="success" style="position: relative; width: 80%; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%;">
         </div>
 
-        <img id="test" src="" />
-
       </div><!-- end container -->
 
-      <script src="location.js"></script>
+      <script src="camera.js"></script>
       <script src="scripts.js"></script>
       <script>
         var vh_num = document.getElementById("vh_num");
-        // getCurrentLocation();
-        // function calltake_snapshot() {
-        //     take_snapshot()
-        // }
+
+        // console.log("Image URI: ", image_uri, vh_num);
+        
+        function calltake_snapshot() {
+            // console.log("Image URI: ", vh_num.value);
+            // CustomAlert("Took Snap", 5000);
+            take_snapshot()
+        }
         function callsaveSnap() {
+            // console.log("Image URI: ", vh_num.value);
             if (vh_num.value == "") {
                 alert("Please Select a Registration Number")
             } else {
@@ -289,8 +293,46 @@
             }
         }
       </script>
+<!-- 
+    <script language="JavaScript">
 
+        // Configure a few settings and attach camera 250x187
+        Webcam.set({
+         width: 350,
+         height: 287,
+         image_format: 'jpeg',
+         jpeg_quality: 90,
+         constraints: {
+            facingMode: 'environment'
+        }
+        });	 
+        Webcam.attach( '#my_camera' );
+       
+       function take_snapshot() {
+        // play sound effect
+        //shutter.play();
+        // take snapshot and get image data
+        Webcam.snap( function(data_uri) {
+        // display results in page
+        console.log("Data URI: ", data_uri);
+        document.getElementById('results').innerHTML = 
+         '<img class="after_capture_frame" src="'+data_uri+'"/>';
+        $("#captured_image_data").val(data_uri);
+        });	 
+       }
+   
+       function saveSnap(){
+       var base64data = $("#captured_image_data").val();
+        $.ajax({
+               type: "POST",
+               dataType: "json",
+               url: "capture_image_upload.php",
+               data: {image: base64data},
+               success: function(data) { 
+                   alert(data);
+               }
+           });
+       }
+   </script> -->
 </body>
 </html>
-
-
