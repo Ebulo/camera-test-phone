@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel = "icon" href ="static/img/soa_logo_192.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
+    <!-- Bootstrap theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(function(){
+        $("#vh_num").select2();
+        }); 
+    </script>
+
+    <style>
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 50%;
+            right: 1px;
+            width: 24px;
+            transform: translateY(-50%);
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .captured_photo {
+            width: 100%;
+            height: 55vh;
+            object-fit: cover;
+            overflow: hidden;
+
+        }
+    </style>
+    
+    <link rel="manifest" href="manifest.json">
+
+    <title>MV Live</title>
+</head>
+<body onload="bodyLoaded()">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="header" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%; margin-top: 10px;">
+            <div class="img_" style="position: relative; left: 0px; top: 0px; width: 40px; overflow: hidden; margin: 4px;">
+                <img src="static/img/soa_logo.png" alt="SOA Logo" style="width: 100%">
+            </div>
+            <div style="text-align: center;">
+                <h4 style="margin-bottom: 0; margin-top: 8px">SOA MOTOR VEHICLE</h4>
+                <p>Realtime Data Upload</p>
+            </div>
+            <div class="img_" style="position: relative; left: 0px; top: 0px; width: 40px; overflow: hidden; margin: 4px;">
+                <img src="static/img/soa_logo.png" alt="SOA Logo" style="width: 100%">
+            </div>
+                
+            </div>
+        </div>
+        
+        <div class="vn" style="padding: 10px; width: 100%; margin-top: 10px;">
+            <select id="vh_num" required class="form-select" aria-label="Default select example"  data-live-search="true" style="height: 40px;">
+                <option value="">Registration Number</option>
+                <option value="OD 33 AG 1836">OD 33 AG 1836</option>
+                <option value="OD 33 AG 2181">OD 33 AG 2181</option>
+                <option value="OR 02 BH 7644">OR 02 BH 7644</option>
+                <option value="OR 02 BJ 0744">OR 02 BJ 0744</option>
+                <option value="OR 02 BG 4344">OR 02 BG 4344</option>
+                <option value="OD 02 S 3044">OD 02 S 3044</option>
+                <option value="OD 02 E 7044">OD 02 E 7044</option>
+                <option value="OD 02 G 9144">OD 02 G 9144</option>
+                <option value="OR 02 BZ 5744">OR 02 BZ 5744</option>
+                <option value="OR 02 AC 0242">OR 02 AC 0242</option>
+                <option value="OR 02 BP 7944">OR 02 BP 7944</option>
+                <option value="OR 02 AZ 0644">OR 02 AZ 0644</option>
+                <option value="OD 02 G 9044">OD 02 G 9044</option>
+                <option value="OR 02 BP 8144">OR 02 BP 8144</option>
+                <option value="OR 02 BZ 4244">OR 02 BZ 4244</option>
+                <option value="OR 02 BZ 5044">OR 02 BZ 5044</option>
+                <option value="OR 02 AN 1119">OR 02 AN 1119</option>
+                <option value="OD 02 E 5844">OD 02 E 5844</option>
+                <option value="OD 02 J 0244">OD 02 J 0244</option>
+                <option value="OD 02 E 6044">OD 02 E 6044</option>
+                <option value="OD 02 Q 2844">OD 02 Q 2844</option>
+                <option value="OD 02 J 0344">OD 02 J 0344</option>
+                <option value="OD 33 C 7344">OD 33 C 7344</option>
+                <option value="OR 02 AJ 2834">OR 02 AJ 2834</option>
+                <option value="OR 02 BU 6144">OR 02 BU 6144</option>
+                <option value="OD 02 AZ 8644">OD 02 AZ 8644</option>
+                <option value="OR 02 BH 7244">OR 02 BH 7244</option>
+                <option value="OR 02 AD 8628">OR 02 AD 8628</option>
+                <option value="OR 02 AD 9818">OR 02 AD 9818</option>
+                <option value="OR 05 AG 0007">OR 05 AG 0007</option>
+                <option value="OR 02 BA 8444">OR 02 BA 8444</option>
+                <option value="OR 02 Q 7007">OR 02 Q 7007</option>
+                <option value="OD 02 T 1344">OD 02 T 1344</option>
+                <option value="OD 02 N 6677">OD 02 N 6677</option>
+                <option value="OD 02 BS 0573">OD 02 BS 0573</option>
+                <option value="OD 02 BR 9180">OD 02 BR 9180</option>
+                <option value="OR 02 BQ 8944">OR 02 BQ 8944</option>
+                <option value="OR 02 T 7007">OR 02 T 7007</option>
+                <option value="OD 33 J 0306">OD 33 J 0306</option>
+                <option value="OR 02 BG 4383">OR 02 BG 4383</option>
+                <option value="OR 02 S 0042">OR 02 S 0042</option>
+                <option value="OD 33 D 4544">OD 33 D 4544</option>
+                <option value="OD 33 D 4744">OD 33 D 4744</option>
+                <option value="OD 02 R 0744">OD 02 R 0744</option>
+                <option value="OR 02 AM 0306">OR 02 AM 0306</option>
+                <option value="OR 02 AH 6624">OR 02 AH 6624</option>
+                <option value="OR 02 AL 9042">OR 02 AL 9042</option>
+                <option value="OR 02 AZ 1044">OR 02 AZ 1044</option>
+                <option value="OD 02 BE 3644">OD 02 BE 3644</option>
+                <option value="OD 02 BE 4044">OD 02 BE 4044</option>
+                <option value="OD 02 BE 4144">OD 02 BE 4144</option>
+                <option value="OR 02 BR 3244">OR 02 BR 3244</option>
+                <option value="OR 02 AZ 0144">OR 02 AZ 0144</option>
+                <option value="OD02 BH 9944">OD02 BH 9944</option>
+                <option value="OD 05 T 8011">OD 05 T 8011</option>
+                <option value="OD 02 Q 6544">OD 02 Q 6544</option>
+                <option value="OR 04  H 7007">OR 04  H 7007</option>
+                <option value="OD 02 AE 7007">OD 02 AE 7007</option>
+                <option value="OD 02 BE 7007">OD 02 BE 7007</option>
+                <option value="OD 02 H 5644">OD 02 H 5644</option>
+                <option value="OD 02 AB 2844">OD 02 AB 2844</option>
+                <option value="OD 02 AZ 7007">OD 02 AZ 7007</option>
+                <option value="OD 02 AQ 7007">OD 02 AQ 7007</option>
+                <option value="OD 02 AT 7007">OD 02 AT 7007</option>
+                <option value="OD 02 AY 7007">OD 02 AY 7007</option>
+                <option value="OD 33 C 5184">OD 33 C 5184</option>
+                <option value="OD 02 C 7733">OD 02 C 7733</option>
+                <option value="OD 02 L 8944">OD 02 L 8944</option>
+                <option value="OD 02 N 4929">OD 02 N 4929</option>
+                <option value="OD 02 AA 7990">OD 02 AA 7990</option>
+                <option value="OD 02 AT 4095">OD 02 AT 4095</option>
+                <option value="OD 02 E 1744">OD 02 E 1744</option>
+                <option value="OR 02 BV 6144">OR 02 BV 6144</option>
+                <option value="OD 02 F 7644">OD 02 F 7644</option>
+                <option value="OD 33 D 4144">OD 33 D 4144</option>
+                <option value="OR 02 BG 1844">OR 02 BG 1844</option>
+                <option value="OD 33 D 4644">OD 33 D 4644</option>
+                <option value="OD 33 D 5644">OD 33 D 5644</option>
+                <option value="OR 02 AT 6844">OR 02 AT 6844</option>
+                <option value="OR 02 AH 6625">OR 02 AH 6625</option>
+                <option value="OD 02 BE 3544">OD 02 BE 3544</option>
+                <option value="OD 02 BE 3744">OD 02 BE 3744</option>
+                <option value="OR 02 AT 8544">OR 02 AT 8544</option>
+                <option value="OR 02 BR 3144">OR 02 BR 3144</option>
+                <option value="OR 02 AZ 2644">OR 02 AZ 2644</option>
+                <option value="OR 02 AZ 2744">OR 02 AZ 2744</option>
+                <option value="OR 02 BZ 7044">OR 02 BZ 7044</option>
+                <option value="OR 02 BZ 7144">OR 02 BZ 7144</option>
+                <option value="OR 02 BZ 7244">OR 02 BZ 7244</option>
+                <option value="OD 02 AB 2344">OD 02 AB 2344</option>
+                <option value="OR 02 BG 1744">OR 02 BG 1744</option>
+                <option value="OR 02 BZ 8459">OR 02 BZ 8459</option>
+                <option value="OR 02 BP 8044">OR 02 BP 8044</option>
+                <option value="OR 02 AT 5344">OR 02 AT 5344</option>
+                <option value="OD 02 S 9344">OD 02 S 9344</option>
+                <option value="OD 02 S 9644">OD 02 S 9644</option>
+                <option value="OD 02 T 1244">OD 02 T 1244</option>
+                <option value="OD 02 N 9544">OD 02 N 9544</option>
+                <option value="OR 02 AP 2266">OR 02 AP 2266</option>
+                <option value="OD 02 U 1544">OD 02 U 1544</option>
+                <option value="OR 02 BX 6944">OR 02 BX 6944</option>
+                <option value="OD 02 AB 2944">OD 02 AB 2944</option>
+                <option value="OD 02 AB 3044">OD 02 AB 3044</option>
+                <option value="OD 02 E 6844">OD 02 E 6844</option>
+                <option value="OD 02 F 7444">OD 02 F 7444</option>
+                <option value="OD 02 R 0944">OD 02 R 0944</option>
+                <option value="OR 02 BZ 5844">OR 02 BZ 5844</option>
+                <option value="OR 02 AZ 0544">OR 02 AZ 0544</option>
+                <option value="OR 02 AZ 0844">OR 02 AZ 0844</option>
+                <option value="OR 02 BZ 0944">OR 02 BZ 0944</option>
+                <option value="OD 02 E 5944">OD 02 E 5944</option>
+                <option value="OD 33 J 6544">OD 33 J 6544</option>
+                <option value="OD 33 AC 1948">OD 33 AC 1948</option>
+                <option value="OD 02 BM 7975">OD 02 BM 7975</option>
+                <option value="OD 02 BM 7954">OD 02 BM 7954</option>
+                <option value="OD 02 BJ 9593">OD 02 BJ 9593</option>
+                <option value="OD 02 BJ 9598">OD 02 BJ 9598</option>
+                <option value="OD 33 AC 9029">OD 33 AC 9029</option>
+                <option value="OD02 BS 0781">OD02 BS 0781</option>
+                <option value="OD 02 BL 8244">OD 02 BL 8244</option>
+                <option value="OD02 BL 8144">OD02 BL 8144</option>
+                <option value="OR 02 BX 2974">OR 02 BX 2974</option>
+                <option value="OD 02 H 7244">OD 02 H 7244</option>
+                <option value="OD 02 B 9644">OD 02 B 9644</option>
+                <option value="OD 02 BA 0944">OD 02 BA 0944</option>
+                <option value="OD02 BJ 2044">OD02 BJ 2044</option>
+                <option value="OD 02 BH 8044">OD 02 BH 8044</option>
+                <option value="OD 02 BJ 9597">OD 02 BJ 9597</option>
+                <option value="OD 02BJ9592">OD 02BJ9592</option>
+                <option value="OD 02 BJ 9599">OD 02 BJ 9599</option>
+                <option value="OD 02 BJ 9596">OD 02 BJ 9596</option>
+                <option value="OR 02 AS 2585">OR 02 AS 2585</option>
+                <option value="OD 02 BN 7007">OD 02 BN 7007</option>
+                <option value="OD 02 BP 7007">OD 02 BP 7007</option>
+                <option value="OD 33 AE 3619">OD 33 AE 3619</option>
+                <option value="OD 02 BX 2591">OD 02 BX 2591</option>
+                <option value="OD 02 BX 2550">OD 02 BX 2550</option>
+                <option value="OD 02 BX 4829">OD 02 BX 4829</option>
+                <option value="OD 02 BX 4890">OD 02 BX 4890</option>
+                <option value="OD 02 BX 5360">OD 02 BX 5360</option>
+                <option value="OD 02 BX 4883">OD 02 BX 4883</option>
+                <option value="OD 02 BX 5350">OD 02 BX 5350</option>
+                <option value="OD 02 BZ 1516">OD 02 BZ 1516</option>
+                <option value="OD 02 BZ 1538">OD 02 BZ 1538</option>
+                <option value="OD 02 2670">OD 02 2670</option>
+                <option value="OD 02 BZ 7684">OD 02 BZ 7684</option>
+                <option value="OD 02 BZ 8262">OD 02 BZ 8262</option>
+                <option value="OD 02 BZ 8204">OD 02 BZ 8204</option>
+                <option value="OD 02 CB 6265">OD 02 CB 6265</option>
+                <option value="OD 02 CB 6260">OD 02 CB 6260</option>
+                <option value="OD 02 CB 6273">OD 02 CB 6273</option>
+                <option value="OD 02 CB 6277">OD 02 CB 6277</option>
+                <option value="OD 02 CB 6299">OD 02 CB 6299</option>
+                <option value="OD 02 CB 6271">OD 02 CB 6271</option>
+                <option value="OD 02 CB 6202">OD 02 CB 6202</option>
+                <option value="OD 02 CD 2199">OD 02 CD 2199</option>
+                <option value="OD 02 CD 0551">OD 02 CD 0551</option>
+                <option value="OD 02 CD 0689">OD 02 CD 0689</option>
+               </select>
+        </div>
+
+        <div class="row" style="margin: 0px">
+          
+          <div class="col-lg-6" align="center" style="margin-top: 10px;">
+
+              <!-- <label>Result</label> -->
+              <div id="results" style="width: 90%; height: auto; overflow: hidden; border-radius: 8px;">
+                  <img style="width: 100%; height: auto;" class="captured_photo" src="static/img/no_image.png" />
+              </div>
+              <!-- <div id="hidden_image_compression">
+
+              </div> -->
+              <br>
+              <div class="col-lg-6" align="center" style="margin-top: 10px">
+                <input onchange="capture_image()" type="file" accept="image/*" capture="user" name="camera_image" style="display: none;" id="camera_image">
+                <label for="camera_image" type="button" id="take_snapshot" style="margin-right: 6px; background: rgb(255, 217, 0); font-weight: 600; color: #000000; margin-bottom: 20px; cursor: pointer;" class="btn btn-round btn-file">1. Take Photo</label>
+
+                <button type="submit" class="btn" id="send_btn" onclick="callsaveSnap()" style="margin-left: 6px; font-weight: 600; background: #00963e; color: #fff; margin-bottom: 20px;">2. Send Photo</button>
+              </div>
+          </div>	
+        </div><!--  end row -->
+
+        <div id="upload_start" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/upload_start.gif" alt="success" style="position: relative; width: 100%; top: 50%; transform: translateY(-50%);">
+        </div>
+
+        <div id="upload_done" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/upload_done.gif" alt="success" style="position: relative; width: 100%; top: 50%; transform: translateY(-50%);">
+        </div>
+
+        <div id="error" class="message" style="display: none; position: absolute; height: 100%; overflow: hidden; background: #ffffff; top: 50%; transform: translateY(-50%)">
+            <img src="static/img/error.jpg" alt="success" style="position: relative; width: 80%; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%;">
+        </div>
+
+        <img id="test" src="" />
+
+      </div><!-- end container -->
+
+      <script src="location.js"></script>
+      <script src="scripts.js"></script>
+      <script>
+        var vh_num = document.getElementById("vh_num");
+        // getCurrentLocation();
+        // function calltake_snapshot() {
+        //     take_snapshot()
+        // }
+        function callsaveSnap() {
+            if (vh_num.value == "") {
+                alert("Please Select a Registration Number")
+            } else {
+                if (image_uri !== null) {
+                    saveSnap(image_uri, vh_num.value)
+                } else {
+                    alert("Please Take a New Photo")
+                }
+            }
+        }
+      </script>
+
+</body>
+</html>
+
+
