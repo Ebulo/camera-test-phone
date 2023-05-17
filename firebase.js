@@ -36,7 +36,7 @@ onAuthStateChanged(auth, function (user) {
   if (user) {
     window.user = user;
     console.log("USER LOGGED IN");
-    window.location.replace("/main.html");
+    window.location.replace("main.html");
   } else {
     // No user is signed in.
     console.log("USER NOT LOGGED IN");
