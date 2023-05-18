@@ -4,8 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="static/img/soa_logo_192.png" />
     <!-- <script type="module" src="./firebase.js"></script> -->
     <link rel="stylesheet" href="./static/css/style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <script src="scripts.js"></script>
     <!-- <script src="secrets.js"></script> -->
     <title>Document</title>
   </head>
@@ -30,6 +38,35 @@
         </div>
       </div>
     </div>
+
+    <div
+      id="error"
+      class="message"
+      style="
+        display: none;
+        position: absolute;
+        height: 100%;
+        overflow: hidden;
+        background: #ffffff;
+        top: 50%;
+        transform: translateY(-50%);
+      "
+    >
+      <img
+        src="static/img/error.jpg"
+        alt="success"
+        style="
+          position: relative;
+          width: 80%;
+          top: 50%;
+          transform: translateY(-50%) translateX(-50%);
+          left: 50%;
+        "
+      />
+    </div>
+
+    <script src="location.js"></script>
+    <!-- <script src="scripts.js"></script> -->
 
     <!-- Add the latest firebase dependecies from CDN -->
     <script type="module" src="./firebase.js"></script>
