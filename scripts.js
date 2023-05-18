@@ -174,7 +174,7 @@ function capture_image() {
   // $("#captured_image_data").val(data_uri);
 }
 
-async function saveSnap(res, img_name) {
+async function saveSnap(res, img_name, mtr_reading, phone, name) {
   // let msg = document.getElementById("msg");
   if (!(await checkOnlineStatus())) {
     const statusDisplay = document.getElementById("error");
@@ -183,53 +183,55 @@ async function saveSnap(res, img_name) {
   }
 
   // loc = getCurrentLocation();
+  console.log("Phone: ", phone, name, mtr_reading, img_name);
 
-  let send_btn = document.getElementById("send_btn");
-  let upload_start = document.getElementById("upload_start");
-  let error = document.getElementById("error");
-  send_btn.disabled = true;
-  upload_start.style.display = "block";
-  // let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
-  let url =
-    "https://script.google.com/macros/s/AKfycbxIPNCwLKHK7qeBe68hg3CPXwsbTnX70qaPEIhV-4omqfPhteRNf6f2KKtvINfyclqQ/exec";
+  // let send_btn = document.getElementById("send_btn");
+  // let upload_start = document.getElementById("upload_start");
+  // let error = document.getElementById("error");
+  // send_btn.disabled = true;
+  // upload_start.style.display = "block";
+  // // let url = "https://script.google.com/macros/s/AKfycbzf3f7B7Pqo7nX67aBXhOrmvOTmYh8Hng4c6r0to_MokP2ZdpIbi40gxlZY2mwm6i5Z/exec";
+  // let url =
+  //   "https://script.google.com/macros/s/AKfycbxIPNCwLKHK7qeBe68hg3CPXwsbTnX70qaPEIhV-4omqfPhteRNf6f2KKtvINfyclqQ/exec";
 
-  let spt = res.split("base64,")[1];
-  // console.log("spt: ", spt);
-  let date = new Date().toLocaleDateString();
-  loc_string = JSON.stringify(loc);
-  // print(loc);
-  // console.log("Location: ", loc);
-  let obj = {
-    base64: spt,
-    type: "image/jpeg",
-    name: img_name + ".jpg",
-    date: date,
-    loc: loc_string,
-  };
-  try {
-    // document.body.style.overscrollBehavior = "none";
-    const upload = fetch(url, {
-      method: "POST",
-      body: JSON.stringify(obj),
-    });
-    upload
-      .then((r) => r.text())
-      .then((data) => {
-        // console.log(upload.status);
-        console.log(JSON.parse(data));
-        // msg.style.display = "block";
-        // alert("Added Successfully")
-        // CustomAlert("Added Successfully", 2800);
-        document.getElementById("results").innerHTML =
-          '<img class="captured_photo" style="width: 100%" id="captured_photo" src="static/img/no_image.png"/>';
-        image_uri = null;
-        upload_start.style.display = "none";
-        send_btn.disabled = false;
-      });
-  } catch (err) {
-    console.log("Error: ", err);
-    upload_start.style.display = "none";
-    send_btn.disabled = false;
-    error.style.display = "block";
-  }
+  // let spt = res.split("base64,")[1];
+  // // console.log("spt: ", spt);
+  // let date = new Date().toLocaleDateString();
+  // loc_string = JSON.stringify(loc);
+  // // print(loc);
+  // // console.log("Location: ", loc);
+  // let obj = {
+  //   base64: spt,
+  //   type: "image/jpeg",
+  //   name: img_name + ".jpg",
+  //   date: date,
+  //   loc: loc_string,
+  //   mtr_reading: mtr_reading,
+  // };
+  // try {
+  //   // document.body.style.overscrollBehavior = "none";
+  //   const upload = fetch(url, {
+  //     method: "POST",
+  //     body: JSON.stringify(obj),
+  //   });
+  //   upload
+  //     .then((r) => r.text())
+  //     .then((data) => {
+  //       // console.log(upload.status);
+  //       console.log(JSON.parse(data));
+  //       // msg.style.display = "block";
+  //       // alert("Added Successfully")
+  //       // CustomAlert("Added Successfully", 2800);
+  //       document.getElementById("results").innerHTML =
+  //         '<img class="captured_photo" style="width: 100%" id="captured_photo" src="static/img/no_image.png"/>';
+  //       image_uri = null;
+  //       upload_start.style.display = "none";
+  //       send_btn.disabled = false;
+  //     });
+  // } catch (err) {
+  //   console.log("Error: ", err);
+  //   upload_start.style.display = "none";
+  //   send_btn.disabled = false;
+  //   error.style.display = "block";
+  // }
 }

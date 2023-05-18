@@ -240,6 +240,10 @@
                </select>
         </div>
 
+        <div class="vn" style="padding: 0px 10px; width: 100%; margin-top: 4px;">
+            <input id="meter_reading" type="tel" placeholder="Meter Reading" style="width: 100%; padding: 8px; height: 40px; border-radius: 6px; outline: none; border: 1px solid #4444;">
+        </div>
+
         <div class="row" style="margin: 0px">
           
           <div class="col-lg-6" align="center" style="margin-top: 10px;">
@@ -280,21 +284,36 @@
       <script src="location.js"></script>
       <script src="scripts.js"></script>
       <script>
+        var user_data = window.localStorage.getItem("user_data");
+        if (!user_data) {
+        window.location = "index.html";
+        }
+      </script>
+      <script>
         var vh_num = document.getElementById("vh_num");
-        // getCurrentLocation();
-        // function calltake_snapshot() {
-        //     take_snapshot()
-        // }
-        function callsaveSnap() {
-            if (vh_num.value == "") {
-                alert("Please Select a Registration Number")
-            } else {
-                if (image_uri !== null) {
-                    saveSnap(image_uri, vh_num.value)
+        var mtr_reading = document.getElementById("meter_reading");
+        var user_data = window.localStorage.getItem("user_data");
+        if (user_data) {
+            var phone = JSON.parse(user_data).phone;
+            var name = JSON.parse(user_data).name;
+        
+            // getCurrentLocation();
+            // function calltake_snapshot() {
+            //     take_snapshot()
+            // }
+            function callsaveSnap() {
+                if (vh_num.value == "") {
+                    alert("Please Select a Registration Number")
                 } else {
-                    alert("Please Take a New Photo")
+                    if (image_uri !== null) {
+                        saveSnap(image_uri, vh_num.value, mtr_reading.value, phone, name)
+                    } else {
+                        alert("Please Take a New Photo")
+                    }
                 }
             }
+        } else {
+            window.location = "index.html";
         }
       </script>
 

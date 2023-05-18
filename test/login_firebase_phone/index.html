@@ -23,17 +23,18 @@
     <div class="login-page">
       <div class="form">
         <div class="login-form">
-          <input type="text" id="name" placeholder="Your Name" />
           <input
             type="tel"
             id="phoneNumber"
             placeholder="Phone Number"
             value="+91"
           />
-          <!-- <button id="send_btn" class="send_code">Send Code</button> -->
-          <input type="text" id="code" placeholder="Code" />
-          <!-- <div id="recaptcha-container" class="recaptcha-container"></div> -->
-          <button id="verify_btn" class="confirm_code">Verify</button>
+          <button id="sign-in-button" class="send_code">Send Code</button>
+          <input type="tel" id="code" placeholder="Code" />
+          <div id="recaptcha-container" class="recaptcha-container"></div>
+          <button id="confirm-code" hidden="true" class="confirm_code">
+            Verify
+          </button>
         </div>
       </div>
     </div>
@@ -65,12 +66,9 @@
     </div>
 
     <script src="location.js"></script>
-    <script type="text/javascript" src="login.js"></script>
-    <script>
-      var user_data = window.localStorage.getItem("user_data");
-      if (user_data) {
-        window.location = "main.html";
-      }
-    </script>
+    <!-- <script src="scripts.js"></script> -->
+
+    <!-- Add the latest firebase dependecies from CDN -->
+    <script type="module" src="./firebase.js"></script>
   </body>
 </html>
